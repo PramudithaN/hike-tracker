@@ -35,14 +35,28 @@ async function requestPermissions() {
   const { status: fg } = await Location.requestForegroundPermissionsAsync();
   if (fg !== 'granted') throw new Error('Foreground location permission denied.');
 
-  const { status: bg } = await Location.requestBackgroundPermissionsAsync();
-  if (bg !== 'granted') throw new Error('Background location permission denied. Please allow "Always" in Settings.');
+  // Background permission is optional — hike still works without it (no background tracking)
+  await Location.requestBackgroundPermissionsAsync().catch(() => {});
 }
 
 async function getCurrentPosition(): Promise<Location.LocationObject> {
-  return Location.getCurrentPositionAsync({
-    accuracy: Location.Accuracy.BestForNavigation,
-  });
+  const timeout = new Promise<never>((_, reject) =>
+    setTimeout(() => reject(new Error('Location timed out. Make sure GPS is enabled.')), 15_000),
+  );
+  try {
+    return await Promise.race([
+      Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.BestForNavigation }),
+      timeout,
+    ]);
+  } catch {
+    // Fall back to balanced accuracy which resolves faster
+    return await Promise.race([
+      Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced }),
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Location timed out. Make sure GPS is enabled.')), 10_000),
+      ),
+    ]);
+  }
 }
 
 export function useLocationTracking() {
@@ -51,6 +65,13 @@ export function useLocationTracking() {
   async function startTracking(hikeId: string) {
     if (trackingRef.current) return;
     (globalThis as any).__activeHikeId = hikeId;
+
+    const { status: bg } = await Location.getBackgroundPermissionsAsync();
+    if (bg !== 'granted') {
+      // No background permission — skip background task, foreground updates handle it
+      trackingRef.current = true;
+      return;
+    }
 
     const isRegistered = await Location.hasStartedLocationUpdatesAsync(BACKGROUND_TASK).catch(() => false);
     if (!isRegistered) {
