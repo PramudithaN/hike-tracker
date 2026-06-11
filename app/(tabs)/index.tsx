@@ -1,7 +1,7 @@
 // app/tabs/index.tsx  — Home: stats + recent hikes
 import { type ComponentProps, useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useAuthStore } from '@/store';
 import { fetchRecentHikes, fetchUserProfile } from '@/lib/supabase/queries';
 import { formatElapsed } from '@/lib/utils/achievements';
@@ -39,9 +39,9 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.statsRow}>
-        <StatCard icon="trail-sign" label="Total hikes" value={String(profile?.total_hikes ?? 0)} />
+        <StatCard icon="hiking" label="Total hikes" value={String(profile?.total_hikes ?? 0)} />
         <StatCard
-          icon="navigate"
+          icon="map-marker-distance"
           label="Distance"
           value={`${(profile?.total_distance_km ?? 0).toFixed(1)} km`}
         />
@@ -50,7 +50,7 @@ export default function HomeScreen() {
       <Text style={styles.sectionTitle}>Recent hikes</Text>
       {hikes.length === 0 ? (
         <View style={styles.empty}>
-          <Ionicons name="walk-outline" size={48} color="#2d5a27" />
+          <MaterialCommunityIcons name="hiking" size={52} color="#2d5a27" />
           <Text style={styles.emptyText}>No hikes yet. Start your first one!</Text>
         </View>
       ) : (
@@ -65,10 +65,10 @@ export default function HomeScreen() {
   );
 }
 
-function StatCard({ icon, label, value }: Readonly<{ icon: ComponentProps<typeof Ionicons>['name']; label: string; value: string }>) {
+function StatCard({ icon, label, value }: Readonly<{ icon: ComponentProps<typeof MaterialCommunityIcons>['name']; label: string; value: string }>) {
   return (
     <View style={styles.statCard}>
-      <Ionicons name={icon} size={22} color="#7ec87e" />
+      <MaterialCommunityIcons name={icon} size={24} color="#7ec87e" />
       <Text style={styles.statValue}>{value}</Text>
       <Text style={styles.statLabel}>{label}</Text>
     </View>
@@ -80,7 +80,7 @@ function HikeRow({ hike }: Readonly<{ hike: Hike }>) {
   return (
     <View style={styles.hikeRow}>
       <View style={styles.hikeIcon}>
-        <Ionicons name="trail-sign" size={20} color="#7ec87e" />
+        <MaterialCommunityIcons name="map-marker-path" size={20} color="#7ec87e" />
       </View>
       <View style={styles.hikeInfo}>
         <Text style={styles.hikeDate}>{date}</Text>

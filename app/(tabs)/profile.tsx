@@ -1,7 +1,7 @@
 // app/tabs/profile.tsx
 import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useAuthStore } from '@/store';
 import { fetchUserProfile } from '@/lib/supabase/queries';
 import type { UserProfile } from '@/types';
@@ -37,23 +37,23 @@ export default function ProfileScreen() {
     <View style={styles.container}>
       <View style={styles.avatarRow}>
         <View style={styles.avatar}>
-          <Ionicons name="person" size={40} color="#7ec87e" />
+          <MaterialCommunityIcons name="account-circle-outline" size={52} color="#7ec87e" />
         </View>
         <Text style={styles.username}>{profile?.username ?? user?.email}</Text>
         <Text style={styles.email}>{user?.email}</Text>
       </View>
 
       <View style={styles.statsRow}>
-        <StatCard label="Hikes" value={String(profile?.total_hikes ?? 0)} icon="trail-sign" />
+        <StatCard label="Hikes" value={String(profile?.total_hikes ?? 0)} icon="hiking" />
         <StatCard
           label="Distance"
           value={`${(profile?.total_distance_km ?? 0).toFixed(1)} km`}
-          icon="navigate"
+          icon="map-marker-distance"
         />
       </View>
 
       <TouchableOpacity style={styles.signOutBtn} onPress={handleSignOut}>
-        <Ionicons name="log-out-outline" size={20} color="#e57373" />
+        <MaterialCommunityIcons name="logout" size={20} color="#e57373" />
         <Text style={styles.signOutText}>Sign out</Text>
       </TouchableOpacity>
     </View>
@@ -63,7 +63,7 @@ export default function ProfileScreen() {
 function StatCard({ label, value, icon }: Readonly<{ label: string; value: string; icon: string }>) {
   return (
     <View style={styles.statCard}>
-      <Ionicons name={icon} size={22} color="#7ec87e" />
+      <MaterialCommunityIcons name={icon as any} size={24} color="#7ec87e" />
       <Text style={styles.statValue}>{value}</Text>
       <Text style={styles.statLabel}>{label}</Text>
     </View>

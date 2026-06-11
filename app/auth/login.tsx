@@ -4,7 +4,7 @@ import {
   View, Text, TextInput, TouchableOpacity, StyleSheet,
   KeyboardAvoidingView, Platform, ActivityIndicator,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { supabase } from '@/lib/supabase/client';
 
 export default function LoginScreen() {
@@ -65,7 +65,7 @@ export default function LoginScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <View style={styles.inner}>
-        <Ionicons name="trail-sign" size={56} color="#7ec87e" style={styles.icon} />
+        <MaterialCommunityIcons name="terrain" size={56} color="#7ec87e" style={styles.icon} />
         <Text style={styles.title}>TrailMark</Text>
         <Text style={styles.subtitle}>Track every summit</Text>
 
@@ -124,8 +124,8 @@ export default function LoginScreen() {
 
         {error && (
           <View style={[styles.errorBox, error.startsWith('Account created') && styles.infoBox]}>
-            <Ionicons
-              name={error.startsWith('Account created') ? 'mail-outline' : 'alert-circle-outline'}
+            <MaterialCommunityIcons
+              name={error.startsWith('Account created') ? 'email-check-outline' : 'alert-circle-outline'}
               size={16}
               color={error.startsWith('Account created') ? '#7ec87e' : '#ff6b6b'}
             />

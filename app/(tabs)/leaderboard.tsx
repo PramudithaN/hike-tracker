@@ -1,7 +1,7 @@
 // app/tabs/leaderboard.tsx
 import { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { fetchLeaderboard } from '@/lib/supabase/queries';
 import { formatElapsed } from '@/lib/utils/achievements';
 import type { LeaderboardEntry } from '@/types';
@@ -29,7 +29,7 @@ export default function LeaderboardScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Ionicons name="trophy" size={28} color="#f5c542" />
+        <MaterialCommunityIcons name="trophy" size={28} color="#f5c542" />
         <Text style={styles.title}>Leaderboard</Text>
       </View>
 

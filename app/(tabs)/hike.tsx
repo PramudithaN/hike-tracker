@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useAuthStore, useHikeStore } from '@/store';
 import { useLocationTracking } from '@/lib/hooks/useLocationTracking';
 import { createHike, markSummit, endHike, fetchUserProfile } from '@/lib/supabase/queries';
@@ -169,7 +169,7 @@ export default function HikeScreen() {
 
       {/* My location button */}
       <TouchableOpacity style={styles.locationBtn} onPress={handleCenterOnLocation}>
-        <Ionicons name="locate" size={22} color="#7ec87e" />
+        <MaterialCommunityIcons name="crosshairs-gps" size={22} color="#7ec87e" />
       </TouchableOpacity>
 
       {/* Action panel */}
@@ -178,7 +178,7 @@ export default function HikeScreen() {
           <TouchableOpacity style={[styles.btn, styles.btnStart]} onPress={handleStartHike} disabled={loading}>
             {loading ? <ActivityIndicator color="#fff" /> : (
               <>
-                <Ionicons name="play" size={20} color="#fff" />
+                <MaterialCommunityIcons name="play-circle-outline" size={22} color="#fff" />
                 <Text style={styles.btnText}>Start Hike</Text>
               </>
             )}
@@ -188,11 +188,11 @@ export default function HikeScreen() {
         {status === 'active' && (
           <View style={styles.row}>
             <TouchableOpacity style={[styles.btn, styles.btnSummit]} onPress={handleMarkSummit} disabled={loading}>
-              <Ionicons name="flag" size={20} color="#fff" />
+              <MaterialCommunityIcons name="flag-checkered" size={22} color="#fff" />
               <Text style={styles.btnText}>At summit</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.btn, styles.btnEnd]} onPress={handleEndHike} disabled={loading}>
-              <Ionicons name="stop" size={20} color="#fff" />
+              <MaterialCommunityIcons name="stop-circle-outline" size={22} color="#fff" />
               <Text style={styles.btnText}>End hike</Text>
             </TouchableOpacity>
           </View>
@@ -200,7 +200,7 @@ export default function HikeScreen() {
 
         {status === 'summited' && (
           <TouchableOpacity style={[styles.btn, styles.btnEnd]} onPress={handleEndHike} disabled={loading}>
-            <Ionicons name="checkmark-circle" size={20} color="#fff" />
+            <MaterialCommunityIcons name="check-circle-outline" size={22} color="#fff" />
             <Text style={styles.btnText}>Finish hike</Text>
           </TouchableOpacity>
         )}

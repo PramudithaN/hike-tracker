@@ -1,5 +1,6 @@
 // lib/supabase/client.ts
 import { Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // URL polyfill is only needed on native — importing it on web breaks fetch
 if (Platform.OS !== 'web') {
   require('react-native-url-polyfill/auto');
@@ -14,7 +15,13 @@ if (__DEV__ && (!supabaseUrl || !supabaseAnonKey)) {
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  // Force the native RN fetch (OkHttp on Android / NSURLSession on iOS)
+  // instead of cross-fetch → whatwg-fetch which causes "Network request failed"
+  global: {
+    fetch: fetch.bind(globalThis),
+  },
   auth: {
+    storage: AsyncStorage,
     detectSessionInUrl: Platform.OS === 'web',
     persistSession: true,
     autoRefreshToken: true,

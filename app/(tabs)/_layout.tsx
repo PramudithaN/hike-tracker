@@ -1,23 +1,23 @@
 // app/(tabs)/_layout.tsx
 import { type ComponentProps } from 'react';
 import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-type IoniconsName = ComponentProps<typeof Ionicons>['name'];
+type MCIName = ComponentProps<typeof MaterialCommunityIcons>['name'];
 type TabIconProps = { focused: boolean; color: string; size: number };
 
 // Icon renderers defined at module level — avoids nested-component lint warning.
-function makeIcon(icon: IoniconsName, activeIcon: IoniconsName) {
+function makeIcon(icon: MCIName, activeIcon: MCIName) {
   return function TabIcon({ focused, color, size }: TabIconProps) {
-    return <Ionicons name={focused ? activeIcon : icon} size={size} color={color} />;
+    return <MaterialCommunityIcons name={focused ? activeIcon : icon} size={size} color={color} />;
   };
 }
 
-const HomeIcon        = makeIcon('home-outline',   'home');
-const HikeIcon        = makeIcon('walk-outline',   'walk');
-const LeaderboardIcon = makeIcon('trophy-outline', 'trophy');
-const AchieveIcon     = makeIcon('ribbon-outline', 'ribbon');
-const ProfileIcon     = makeIcon('person-outline', 'person');
+const HomeIcon        = makeIcon('home-outline',          'home');
+const HikeIcon        = makeIcon('hiking',                'hiking');
+const LeaderboardIcon = makeIcon('trophy-outline',        'trophy');
+const AchieveIcon     = makeIcon('medal-outline',         'medal');
+const ProfileIcon     = makeIcon('account-circle-outline','account-circle');
 
 export default function TabLayout() {
   return (
