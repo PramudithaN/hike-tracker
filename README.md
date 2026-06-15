@@ -1,85 +1,118 @@
-# TrailMark 🏔️
+# TrailMark
 
-A cross-platform hiking tracker for Android and iOS built with React Native + Expo.
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-443E38?style=for-the-badge&logo=react&logoColor=white)
 
-## Features
-- Start / summit / end hike tracking with GPS
-- Real-time elapsed timer
-- Background GPS route recording (works with screen off)
-- Map view with route polyline (OpenStreetMap — free)
-- Leaderboard showing all registered hikers ranked by best time
-- Achievements / badge system
-- Hike history with stats
+> A cross-platform mobile application for tracking hikes, recording waypoints, and competing with friends.
 
-## Tech stack
-| | Tool |
-|---|---|
-| Framework | React Native + Expo (SDK 51) |
-| Navigation | Expo Router (file-based) |
-| Maps | react-native-maps + OpenStreetMap tiles |
-| GPS | expo-location (background mode) |
-| Database | Supabase (PostgreSQL) |
-| Auth | Supabase Auth |
-| State | Zustand |
-| Hosting (API) | Supabase Edge (serverless) |
-| App builds | EAS Build (Expo) |
+---
 
-## Setup
+## 📖 About This Project
 
-### 1. Install dependencies
+TrailMark is a comprehensive hiking companion app built with React Native and Expo. It allows outdoor enthusiasts to track their journeys with high precision using background GPS tracking. The app integrates with Supabase for real-time data synchronization, featuring a competitive leaderboard and a robust achievements system to keep users motivated on the trail.
+
+---
+
+## ✨ Features
+
+- 📍 **Real-time GPS Tracking** — Record your exact path, altitude, and distance even when the app is in the background.
+- 🏔️ **Summit Logging** — Specifically mark when you reach a summit to track your peak performance.
+- 🏆 **Achievements System** — Earn badges like "Mountain Goat" (10 hikes) or "Speed Demon" (under 30 min) as you progress.
+- 📊 **Global Leaderboard** — See how you rank against other hikers in total distance and hike count.
+- 🗺️ **Interactive Map View** — Visualize your current route and historical tracks directly on the map.
+- 👤 **Personal Profiles** — Track your lifetime statistics, including total distance and total hikes.
+- 🔐 **Secure Auth** — Seamless and secure user authentication powered by Supabase.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | [Expo v54.0.35](https://expo.dev/) |
+| Mobile Library | [React Native v0.81.5](https://reactnative.dev/) |
+| Backend/Database | [Supabase](https://supabase.com/) |
+| State Management | [Zustand](https://docs.pmnd.rs/zustand/) |
+| Navigation | [Expo Router](https://docs.expo.dev/router/introduction/) |
+| Language | [TypeScript](https://www.typescriptlang.org/) |
+| Maps | [React Native Maps](https://github.com/react-native-maps/react-native-maps) |
+
+---
+
+## 📋 Prerequisites
+
+- [Node.js](https://nodejs.org/) **v18 or higher**
+- [pnpm](https://pnpm.io/) (recommended) or npm
+- [Git](https://git-scm.com/)
+- [Expo Go](https://expo.dev/expo-go) app on your mobile device (for development)
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the repository
+
 ```bash
-npm install
+git clone https://github.com/yourusername/hike-tracker.git
+cd hike-tracker
 ```
 
-### 2. Set up Supabase
-1. Create a free project at https://supabase.com
-2. Go to SQL Editor and run `supabase/schema.sql`
-3. Copy `.env.example` to `.env.local` and fill in your project URL and anon key
+### 2. Install dependencies
 
-### 3. Run on device
 ```bash
-# Install Expo Go on your phone, then:
-npm start
-
-# Or run on simulator:
-npm run android
-npm run ios
+pnpm install
 ```
 
-### 4. Build for production
+### 3. Set up environment variables
+
+Create a `.env` file in the project root:
+
+```env
+EXPO_PUBLIC_SUPABASE_URL=your_supabase_project_url
+EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 4. Start the development server
+
 ```bash
-npm install -g eas-cli
-eas login
-eas build --platform android   # or ios
+pnpm start
 ```
 
-## Project structure
+Scan the QR code with your **Expo Go** app (Android) or **Camera** app (iOS) to run the project.
+
+---
+
+## 📦 Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `pnpm start` | Starts the Expo development server |
+| `pnpm android` | Runs the app on a connected Android device or emulator |
+| `pnpm ios` | Runs the app on an iOS simulator |
+| `pnpm web` | Opens the app in a web browser |
+
+---
+
+## 📁 Project Structure
+
 ```
-trailmark/
-├── app/
-│   ├── _layout.tsx          # Root layout, auth listener
-│   ├── auth/
-│   │   └── login.tsx        # Sign in / sign up screen
-│   └── tabs/
-│       ├── _layout.tsx      # Tab bar
-│       ├── index.tsx        # Home — stats + recent hikes
-│       ├── hike.tsx         # Core hike tracker + map
-│       ├── leaderboard.tsx  # All hikers ranked
-│       ├── achievements.tsx # Badge collection
-│       └── profile.tsx      # User profile
-├── components/              # Shared UI components
-├── lib/
-│   ├── supabase/
-│   │   ├── client.ts        # Supabase client
-│   │   └── queries.ts       # All DB queries
-│   ├── hooks/
-│   │   └── useLocationTracking.ts  # Background GPS hook
-│   └── utils/
-│       └── achievements.ts  # Badge engine + formatElapsed
-├── store/
-│   └── index.ts             # Zustand — auth + active hike
-├── types/
-│   └── index.ts             # All TypeScript types
-└── supabase/
-    └── schema.sql           # Database schema
+hike-tracker/
+├── app/                       # Expo Router screens and layouts
+│   ├── (tabs)/                # Main navigation tabs (Home, Hike, Leaderboard, etc.)
+│   └── auth/                  # Authentication flow screens
+├── assets/                    # Static assets (icons, splash screen)
+├── lib/                       # Core business logic and integrations
+│   ├── hooks/                 # Custom React hooks (location tracking)
+│   ├── supabase/              # Supabase client and database queries
+│   └── utils/                 # Utility functions and achievement definitions
+├── store/                     # Zustand state management
+├── supabase/                  # SQL schema and database migrations
+└── types/                     # TypeScript interface definitions
 ```
+
+---
+
+*Developed with ❤️ by the TrailMark Team.*
