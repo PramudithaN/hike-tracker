@@ -47,7 +47,7 @@ TrailMark is a comprehensive hiking companion app built with React Native and Ex
 - [Node.js](https://nodejs.org/) **v18 or higher**
 - [pnpm](https://pnpm.io/) (recommended) or npm
 - [Git](https://git-scm.com/)
-- [Expo Go](https://expo.dev/expo-go) app on your mobile device (for development)
+- [Expo Go](https://expo.dev/expo-go) app on your mobile device
 
 ---
 
@@ -56,7 +56,7 @@ TrailMark is a comprehensive hiking companion app built with React Native and Ex
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/hike-tracker.git
+git clone https://github.com/PramudithaN/hike-tracker.git
 cd hike-tracker
 ```
 
@@ -81,7 +81,7 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 pnpm start
 ```
 
-Scan the QR code with your **Expo Go** app (Android) or **Camera** app (iOS) to run the project.
+Scan the QR code with your **Expo Go** app to run the project.
 
 ---
 
@@ -115,4 +115,12 @@ hike-tracker/
 
 ---
 
-*Developed with ❤️ by the TrailMark Team.*
+## 🙋‍♂️ Connect with Me
+
+- **GitHub**: [github.com/PramudithaN](https://github.com/PramudithaN)
+- **LinkedIn**: [linkedin.com/in/pramuditha-nadun-612b1b204](https://linkedin.com/in/pramuditha-nadun-612b1b204)
+- **Email**: pramudithanadun@gmail.com
+
+---
+
+*Developed with ❤️ by Pramuditha Nadun.*
