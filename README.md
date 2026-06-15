@@ -18,13 +18,13 @@ TrailMark is a comprehensive hiking companion app built with React Native and Ex
 
 ## ✨ Features
 
-- 📍 **Real-time GPS Tracking** — Record your exact path, altitude, and distance even when the app is in the background.
-- 🏔️ **Summit Logging** — Specifically mark when you reach a summit to track your peak performance.
-- 🏆 **Achievements System** — Earn badges like "Mountain Goat" (10 hikes) or "Speed Demon" (under 30 min) as you progress.
-- 📊 **Global Leaderboard** — See how you rank against other hikers in total distance and hike count.
-- 🗺️ **Interactive Map View** — Visualize your current route and historical tracks directly on the map.
-- 👤 **Personal Profiles** — Track your lifetime statistics, including total distance and total hikes.
-- 🔐 **Secure Auth** — Seamless and secure user authentication powered by Supabase.
+- 📍 **Real-time GPS Tracking** - Record your exact path, altitude, and distance even when the app is in the background.
+- 🏔️ **Summit Logging** - Specifically mark when you reach a summit to track your peak performance.
+- 🏆 **Achievements System** - Earn badges like "Mountain Goat" (10 hikes) or "Speed Demon" (under 30 min) as you progress.
+- 📊 **Global Leaderboard** - See how you rank against other hikers in total distance and hike count.
+- 🗺️ **Interactive Map View** - Visualize your current route and historical tracks directly on the map.
+- 👤 **Personal Profiles** - Track your lifetime statistics, including total distance and total hikes.
+- 🔐 **Secure Auth** - Seamless and secure user authentication powered by Supabase.
 
 ---
 
