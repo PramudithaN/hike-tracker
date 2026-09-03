@@ -93,13 +93,15 @@ Scan the QR code with your **Expo Go** app to run the project.
 | `pnpm android` | Runs the app on a connected Android device or emulator |
 | `pnpm ios` | Runs the app on an iOS simulator |
 | `pnpm web` | Opens the app in a web browser |
+| `pnpm typecheck` | Validates TypeScript types across the codebase |
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 hike-tracker/
+├── android/                   # Native Android project configuration
 ├── app/                       # Expo Router screens and layouts
 │   ├── (tabs)/                # Main navigation tabs (Home, Hike, Leaderboard, etc.)
 │   └── auth/                  # Authentication flow screens
@@ -108,6 +110,7 @@ hike-tracker/
 │   ├── hooks/                 # Custom React hooks (location tracking)
 │   ├── supabase/              # Supabase client and database queries
 │   └── utils/                 # Utility functions and achievement definitions
+├── scripts/                   # Development scripts and rule generators
 ├── store/                     # Zustand state management
 ├── supabase/                  # SQL schema and database migrations
 └── types/                     # TypeScript interface definitions
